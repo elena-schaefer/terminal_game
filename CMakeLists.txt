@@ -25,6 +25,7 @@ target_link_libraries(Classes
 
 target_sources(Classes
     PRIVATE 
+        src/entity.cpp
         src/game.cpp
         src/map.cpp
         src/mapRenderer.cpp
