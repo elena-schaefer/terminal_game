@@ -4,23 +4,15 @@
 #include <iostream>
 #include <vector>
 #include <string>
+#include "entity.h"
 
-class Player {
+class Player : public Entity {
 
     private:
-        int x;
-        int y;
-        bool player_found = false;
 
     public:
         Player();
         Player(int x, int y);
-
-        bool is_initialized() const;
-
-        int get_x() const;
-        int get_y() const;
-        void move(int newX, int newY);
 };
 
 #endif // PLAYER_H

@@ -28,6 +28,7 @@ target_sources(Classes
         src/game.cpp
         src/map.cpp
         src/mapRenderer.cpp
+        src/monster.cpp
         src/player.cpp
         
     PUBLIC 
@@ -35,9 +36,11 @@ target_sources(Classes
         BASE_DIRS
             include
         FILES 
+            include/entity.h
             include/game.h
             include/map.h
             include/mapRenderer.h
+            include/monster.h
             include/player.h
 )
 

@@ -7,7 +7,7 @@
 
 class Entity {
 
-    private:
+    protected:
         int x;
         int y;
         bool is_found = false;
@@ -21,6 +21,7 @@ class Entity {
 
         int get_x() const;
         int get_y() const;
+        void set_is_found(bool is_found);
         void move(int newX, int newY);
 };
 
