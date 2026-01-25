@@ -5,6 +5,7 @@
 
 namespace config {
     static constexpr char PLAYER = '@';
+    static constexpr char MONSTER = 'M';
     static constexpr char WALL = '#';
     static constexpr char FLOOR = '.';
 }
