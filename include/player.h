@@ -10,15 +10,14 @@ class Player : public Entity {
 
     private:
         bool moving;
-        bool playing;
 
     public:
         Player();
         Player(int x, int y);
 
-        void handle_input();
+        void set_input(int dx, int dy);
+        void set_moving(bool moving);
         bool is_moving();
-        bool is_playing();
 };
 
 #endif // PLAYER_H

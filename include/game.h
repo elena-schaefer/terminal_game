@@ -18,6 +18,7 @@ class Game {
         MapRenderer map_renderer;
 
         Game();
+        void handle_input();
         void update();
         void run();
 };

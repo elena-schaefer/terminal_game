@@ -17,8 +17,43 @@ void Game::init()
 Game::Game()
     : playing(true)
 {
-
 }
+
+void Game::handle_input()
+{
+    char user_input = getch();
+
+    player.set_moving(true);
+
+    switch(user_input) {
+        case 'w':
+        case 'W':
+            player.set_input(0, -1);
+            break;
+        case 's':
+        case 'S':
+            player.set_input(0, 1);
+            break;
+        case 'a':
+        case 'A':
+            player.set_input(-1, 0);
+            break;
+        case 'd':
+        case 'D':
+            player.set_input(1, 0);
+            break;
+        case 'q':
+        case 'Q':
+            std::cout << "Quitting game" << '\n';
+            playing = false;
+            player.set_moving(false);
+            break;
+        default:        // invalid input
+            player.set_moving(false);
+            break;
+    }; 
+}
+
 
 void Game::update()
 {
@@ -48,9 +83,7 @@ void Game::run()
  
         map_renderer.draw(map);
 
-        player.handle_input();
-
-        playing = player.is_playing();
+        handle_input();
 
         if (player.is_moving()){
             update();

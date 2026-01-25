@@ -1,62 +1,27 @@
 #include "player.h"
 
-#include <conio.h>
-
 Player::Player() = default;
 
 Player::Player(int x, int y)
 {
     this -> x = x;
     this -> y = y;
-    playing = true;
     initialize(true); // still necessary with playing?
 }
 
-void Player::handle_input()
+void Player::set_input(int dx, int dy)
 {
-    char user_input = getch();
-
-    moving = true;
-
-    switch(user_input) {
-        case 'w':
-        case 'W':
-            dx = 0;
-            dy = -1;
-            break;
-        case 's':
-        case 'S':
-            dx = 0;
-            dy = 1;
-            break;
-        case 'a':
-        case 'A':
-            dx = -1;
-            dy = 0;
-            break;
-        case 'd':
-        case 'D':
-            dx = 1;
-            dy = 0;
-            break;
-        case 'q':
-        case 'Q':
-            std::cout << "Quitting game" << '\n';
-            playing = false;
-            moving = false;
-            break;
-        default:        // invalid input
-            moving = false;
-            break;
-    }; 
+    this -> dx = dx;
+    this -> dy = dy;
 }
+
+void Player::set_moving(bool moving)
+{
+    this -> moving = moving;
+}
+
 
 bool Player::is_moving()
 {
     return moving;
-}
-
-bool Player::is_playing()
-{
-    return playing;
 }
