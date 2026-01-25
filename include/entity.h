@@ -14,14 +14,13 @@ class Entity {
 
     public:
         Entity();
-        Entity(int x, int y);
 
         bool is_initialized() const;
         bool is_alive() const;
 
         int get_x() const;
         int get_y() const;
-        void set_is_found(bool is_found);
+        void initialize(bool is_found);
         void move(int newX, int newY);
 };
 
