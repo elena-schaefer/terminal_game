@@ -17,6 +17,16 @@ int Entity::get_y() const
     return y;
 }
 
+int Entity::get_dx() const
+{
+    return dx;
+}
+
+int Entity::get_dy() const
+{
+    return dy;
+}
+
 void Entity::initialize(bool is_found)
 {
     this -> is_found = is_found;

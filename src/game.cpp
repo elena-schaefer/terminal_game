@@ -15,58 +15,16 @@ void Game::init()
 }
 
 Game::Game()
-    : dx(0),
-      dy(0),
-      playing(true),
-      move(false)
+    : playing(true)
 {
 
-}
-
-void Game::handle_input()
-{
-    char user_input = getch();
-
-    move = true;
-
-    switch(user_input) {
-        case 'w':
-        case 'W':
-            dx = 0;
-            dy = -1;
-            break;
-        case 's':
-        case 'S':
-            dx = 0;
-            dy = 1;
-            break;
-        case 'a':
-        case 'A':
-            dx = -1;
-            dy = 0;
-            break;
-        case 'd':
-        case 'D':
-            dx = 1;
-            dy = 0;
-            break;
-        case 'q':
-        case 'Q':
-            std::cout << "Quitting game" << '\n';
-            playing = false;
-            move = false;
-            break;
-        default:        // invalid input
-            move = false;
-            break;
-    }; 
 }
 
 void Game::update()
 {
     // calculate new position
-    int newX = player.get_x() + dx;
-    int newY = player.get_y() + dy;
+    int newX = player.get_x() + player.get_dx();
+    int newY = player.get_y() + player.get_dy();
 
     if (map.is_accessable(newX, newY)){
         // Update map and player coordinates
@@ -90,9 +48,11 @@ void Game::run()
  
         map_renderer.draw(map);
 
-        handle_input();
+        player.handle_input();
 
-        if (move){
+        playing = player.is_playing();
+
+        if (player.is_moving()){
             update();
         }
     }

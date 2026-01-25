@@ -10,6 +10,8 @@ class Entity {
     protected:
         int x;
         int y;
+        int dx;
+        int dy;
         bool is_found = false;
 
     public:
@@ -20,6 +22,8 @@ class Entity {
 
         int get_x() const;
         int get_y() const;
+        int get_dx() const;
+        int get_dy() const;
         void initialize(bool is_found);
         void move(int newX, int newY);
 };

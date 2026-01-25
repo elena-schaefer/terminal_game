@@ -8,10 +8,7 @@
 class Game {
 
     private:
-        int dx;
-        int dy;
         bool playing;
-        bool move;
 
         void init();
 
@@ -21,7 +18,6 @@ class Game {
         MapRenderer map_renderer;
 
         Game();
-        void handle_input();
         void update();
         void run();
 };
