@@ -63,7 +63,7 @@ void Game::update(Entity& entity) // Objekt wird genutzt statt kopie
 
     if (map.is_accessable(newX, newY)){
         // Update map and entity coordinates
-        map.set_field(entity.get_x(), entity.get_y(), config::FLOOR);
+        map.set_field(entity.get_x(), entity.get_y(), symbol::FLOOR);
         map.set_field(newX, newY, entity.get_symbol());
 
         entity.move(newX, newY);

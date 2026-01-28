@@ -1,11 +1,12 @@
 #include <cmath>
 #include "monster.h"
+#include "symbol.hpp"
 
 Monster::Monster() = default;
 
 Monster::Monster(int x, int y)
 {
-    symbol = 'M';
+    symbol = symbol::MONSTER;
     this -> x = x;
     this -> y = y;
     initialize(true);

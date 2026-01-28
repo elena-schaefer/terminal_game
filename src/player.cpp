@@ -5,7 +5,7 @@ Player::Player() = default;
 
 Player::Player(int x, int y)
 {
-    symbol = '@';
+    symbol = symbol::PLAYER;
     this -> x = x;
     this -> y = y;
     initialize(true); // still necessary with playing?

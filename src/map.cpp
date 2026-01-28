@@ -32,7 +32,7 @@ Player Map::spawn_player()
 {
     for (int x = 0; x < width; x++){
         for (int y = 0; y < height; y++){
-            if (get_field(x, y) == config::PLAYER){ 
+            if (get_field(x, y) == symbol::PLAYER){ 
                 return Player(x, y);
             }
         }
@@ -44,7 +44,7 @@ Monster Map::spawn_monster() // mit player zusammen ?
 {
     for (int x = 0; x < width; x++){
         for (int y = 0; y < height; y++){
-            if (get_field(x, y) == config::MONSTER){ 
+            if (get_field(x, y) == symbol::MONSTER){ 
                 return Monster(x, y);
             }
         }
@@ -58,7 +58,7 @@ bool Map::is_accessable(int x, int y) const{
         0 > y || y >= height){
         return false;
     }
-    if (map_vector[y][x] == config::WALL){
+    if (map_vector[y][x] == symbol::WALL){
         return false;
     }
     return true;
