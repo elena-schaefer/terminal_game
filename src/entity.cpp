@@ -27,6 +27,12 @@ int Entity::get_dy() const
     return dy;
 }
 
+void Entity::reset_move()
+{
+    dx = 0;
+    dy = 0;
+}
+
 void Entity::initialize(bool is_found)
 {
     this -> is_found = is_found;

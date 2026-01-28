@@ -8,10 +8,10 @@
 class Entity {
 
     protected:
-        int x;
-        int y;
-        int dx;
-        int dy;
+        int x = 0;
+        int y = 0;
+        int dx = 0;
+        int dy = 0;
         bool is_found = false;
 
     public:
@@ -24,6 +24,7 @@ class Entity {
         int get_y() const;
         int get_dx() const;
         int get_dy() const;
+        void reset_move();
         void initialize(bool is_found);
         void move(int newX, int newY);
 };

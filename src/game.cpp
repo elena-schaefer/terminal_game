@@ -67,6 +67,7 @@ void Game::update()
         map.set_field(newX, newY, config::PLAYER);
 
         player.move(newX, newY);
+        player.reset_move();
     }
 }
 
