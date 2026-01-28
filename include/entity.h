@@ -8,6 +8,7 @@
 class Entity {
 
     protected:
+        char symbol;
         int x = 0;
         int y = 0;
         int dx = 0;
@@ -20,6 +21,7 @@ class Entity {
         bool is_initialized() const;
         bool is_alive() const;
 
+        char get_symbol() const;
         int get_x() const;
         int get_y() const;
         int get_dx() const;

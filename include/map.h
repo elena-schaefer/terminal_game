@@ -3,6 +3,7 @@
 
 #include <vector>
 #include <string>
+#include "monster.h"
 #include "player.h"
 
 class Map {
@@ -15,6 +16,8 @@ class Map {
         Map();
         void load_from_file();
         Player spawn_player();
+        Monster spawn_monster();
+
         bool is_accessable(int x, int y) const;
         char get_field(int x, int y) const;
         void set_field(int x, int y, char symbol);

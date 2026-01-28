@@ -1,9 +1,11 @@
 #include "player.h"
+#include "symbol.hpp"
 
 Player::Player() = default;
 
 Player::Player(int x, int y)
 {
+    symbol = '@';
     this -> x = x;
     this -> y = y;
     initialize(true); // still necessary with playing?

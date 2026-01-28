@@ -2,6 +2,7 @@
 #define GAME_H
 
 #include "map.h"
+#include "monster.h"
 #include "player.h"
 #include "mapRenderer.h"
 
@@ -14,12 +15,13 @@ class Game {
 
     public:
         Map map;
+        Monster monster;
         Player player;
         MapRenderer map_renderer;
 
         Game();
         void handle_input();
-        void update();
+        void update(Entity& entity);
         void run();
 };
 

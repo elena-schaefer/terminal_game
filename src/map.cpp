@@ -1,4 +1,5 @@
 #include "map.h"
+#include "monster.h"
 #include "player.h"
 #include "symbol.hpp"
 #include <iostream>
@@ -37,6 +38,18 @@ Player Map::spawn_player()
         }
     }
     return Player();
+}
+
+Monster Map::spawn_monster() // mit player zusammen ?
+{
+    for (int x = 0; x < width; x++){
+        for (int y = 0; y < height; y++){
+            if (get_field(x, y) == config::MONSTER){ 
+                return Monster(x, y);
+            }
+        }
+    }
+    return Monster();
 }
 
 bool Map::is_accessable(int x, int y) const{

@@ -7,6 +7,11 @@ bool Entity::is_initialized() const
     return is_found;
 }
 
+char Entity::get_symbol() const
+{
+    return symbol;
+}
+
 int Entity::get_x() const
 {
     return x;

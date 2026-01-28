@@ -12,6 +12,7 @@ void Game::init()
     map.load_from_file(); // without error handling
 
     player = map.spawn_player();
+    monster = map.spawn_monster();
 }
 
 Game::Game()
@@ -54,20 +55,19 @@ void Game::handle_input()
     }; 
 }
 
-
-void Game::update()
+void Game::update(Entity& entity) // Objekt wird genutzt statt kopie
 {
     // calculate new position
-    int newX = player.get_x() + player.get_dx();
-    int newY = player.get_y() + player.get_dy();
+    int newX = entity.get_x() + entity.get_dx();
+    int newY = entity.get_y() + entity.get_dy();
 
     if (map.is_accessable(newX, newY)){
-        // Update map and player coordinates
-        map.set_field(player.get_x(), player.get_y(), config::FLOOR);
-        map.set_field(newX, newY, config::PLAYER);
+        // Update map and entity coordinates
+        map.set_field(entity.get_x(), entity.get_y(), config::FLOOR);
+        map.set_field(newX, newY, entity.get_symbol());
 
-        player.move(newX, newY);
-        player.reset_move();
+        entity.move(newX, newY);
+        entity.reset_move();
     }
 }
 
@@ -87,7 +87,9 @@ void Game::run()
         handle_input();
 
         if (player.is_moving()){
-            update();
+            update(player);
+            monster.decide_move(player.get_x(), player.get_y());
+            update(monster);
         }
     }
 }
