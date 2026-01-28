@@ -2,6 +2,7 @@
 #include "monster.h"
 #include "player.h"
 #include "symbol.hpp"
+#include "spawnPoint.hpp"
 #include <iostream>
 #include <fstream>
 #include <vector>
@@ -28,28 +29,18 @@ void Map::load_from_file(){
     height = map_vector.size();
 }
 
-Player Map::spawn_player()
+std::vector<SpawnPoint> Map::collect_spawn_points() const
 {
-    for (int x = 0; x < width; x++){
-        for (int y = 0; y < height; y++){
-            if (get_field(x, y) == symbol::PLAYER){ 
-                return Player(x, y);
+    std::vector<SpawnPoint> spawn_points;
+    for (int y = 0; y < height; y++){
+        for (int x = 0; x < width; x++){
+            char symbol = get_field(x, y);
+            if (symbol == symbol::PLAYER || symbol == symbol::MONSTER){ 
+                spawn_points.push_back({symbol, x, y});
             }
         }
     }
-    return Player();
-}
-
-Monster Map::spawn_monster() // mit player zusammen ?
-{
-    for (int x = 0; x < width; x++){
-        for (int y = 0; y < height; y++){
-            if (get_field(x, y) == symbol::MONSTER){ 
-                return Monster(x, y);
-            }
-        }
-    }
-    return Monster();
+    return spawn_points;
 }
 
 bool Map::is_accessable(int x, int y) const{

@@ -20,6 +20,7 @@ class Game {
         MapRenderer map_renderer;
 
         Game();
+        void init_entities();
         void handle_input();
         void update(Entity& entity);
         void run();

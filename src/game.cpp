@@ -3,6 +3,7 @@
 #include "player.h"
 #include "mapRenderer.h"
 #include "symbol.hpp"
+#include "spawnPoint.hpp"
 
 #include <conio.h>
 
@@ -10,14 +11,29 @@ void Game::init()
 {
     // open file
     map.load_from_file(); // without error handling
-
-    player = map.spawn_player();
-    monster = map.spawn_monster();
 }
 
 Game::Game()
     : playing(true)
 {
+}
+
+void Game::init_entities()
+{
+    auto spawn_point_vector = map.collect_spawn_points();
+
+    for (const auto& spawn : spawn_point_vector)
+    {
+        switch (spawn.symbol)
+        {
+            case symbol::PLAYER :
+                player = Player(spawn.x, spawn.y);
+                break;
+            case symbol::MONSTER :
+                monster = Monster(spawn.x, spawn.y);
+                break;
+        }
+    }
 }
 
 void Game::handle_input()
@@ -74,6 +90,8 @@ void Game::update(Entity& entity) // Objekt wird genutzt statt kopie
 void Game::run()
 {
     init();
+    init_entities();
+
 
     if (!player.is_initialized()){
         playing = false;

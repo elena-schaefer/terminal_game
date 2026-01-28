@@ -5,6 +5,7 @@
 #include <string>
 #include "monster.h"
 #include "player.h"
+#include "spawnPoint.hpp"
 
 class Map {
     private:
@@ -15,8 +16,8 @@ class Map {
     public:
         Map();
         void load_from_file();
-        Player spawn_player();
-        Monster spawn_monster();
+
+        std::vector<SpawnPoint> collect_spawn_points() const;
 
         bool is_accessable(int x, int y) const;
         char get_field(int x, int y) const;
