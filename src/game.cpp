@@ -20,9 +20,9 @@ Game::Game()
 
 void Game::init_entities()
 {
-    auto spawn_point_vector = map.collect_spawn_points();
+    std::vector<SpawnPoint> spawn_point_vector = map.collect_spawn_points();
 
-    for (const auto& spawn : spawn_point_vector)
+    for (const SpawnPoint& spawn : spawn_point_vector)
     {
         switch (spawn.symbol)
         {
