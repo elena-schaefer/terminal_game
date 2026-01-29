@@ -19,7 +19,6 @@ class Entity {
         Entity();
 
         bool is_initialized() const;
-        bool is_alive() const;
 
         char get_symbol() const;
         int get_x() const;
