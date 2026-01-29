@@ -24,14 +24,16 @@ void Game::init_entities()
 
     for (const SpawnPoint& spawn : spawn_point_vector)
     {
-        switch (spawn.symbol)
+        if (spawn.symbol == symbol::PLAYER) 
         {
-            case symbol::PLAYER :
-                player = Player(spawn.x, spawn.y);
-                break;
-            case symbol::MONSTER :
-                monster = Monster(spawn.x, spawn.y);
-                break;
+            std::unique_ptr<Player> p = std::make_unique<Player>(spawn.x, spawn.y);
+            player = p.get();
+            entities.push_back(std::move(p));
+        }
+        if (spawn.symbol == symbol::MONSTER) 
+        {
+            entities.push_back(std::make_unique<Monster>(spawn.x, spawn.y));
+            break;
         }
     }
 }
@@ -40,33 +42,33 @@ void Game::handle_input()
 {
     char user_input = getch();
 
-    player.set_moving(true);
+    player->set_moving(true);
 
     switch(user_input) {
         case 'w':
         case 'W':
-            player.set_input(0, -1);
+            player->set_input(0, -1);
             break;
         case 's':
         case 'S':
-            player.set_input(0, 1);
+            player->set_input(0, 1);
             break;
         case 'a':
         case 'A':
-            player.set_input(-1, 0);
+            player->set_input(-1, 0);
             break;
         case 'd':
         case 'D':
-            player.set_input(1, 0);
+            player->set_input(1, 0);
             break;
         case 'q':
         case 'Q':
             std::cout << "Quitting game" << '\n';
             playing = false;
-            player.set_moving(false);
+            player->set_moving(false);
             break;
         default:        // invalid input
-            player.set_moving(false);
+            player->set_moving(false);
             break;
     }; 
 }
@@ -93,7 +95,7 @@ void Game::run()
     init_entities();
 
 
-    if (!player.is_initialized()){
+    if (!player->is_initialized()){
         playing = false;
         std::cerr << "No Player found.";
     }
@@ -104,10 +106,14 @@ void Game::run()
 
         handle_input();
 
-        if (player.is_moving()){
-            update(player);
-            monster.decide_move(player.get_x(), player.get_y());
-            update(monster);
+        if (player->is_moving()){
+
+            for (std::unique_ptr<Entity>& entity : entities)
+            {
+                entity->decide_move(player->get_x(),
+                                    player->get_y());
+                update(*entity);
+            }
         }
     }
 }

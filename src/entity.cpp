@@ -32,6 +32,11 @@ int Entity::get_dy() const
     return dy;
 }
 
+void Entity::decide_move(int player_x, int player_y)
+{
+
+}
+
 void Entity::reset_move()
 {
     dx = 0;

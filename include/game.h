@@ -15,8 +15,8 @@ class Game {
 
     public:
         Map map;
-        Monster monster;
-        Player player;
+        Player* player = nullptr;
+        std::vector<std::unique_ptr<Entity>> entities;
         MapRenderer map_renderer;
 
         Game();
