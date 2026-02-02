@@ -24,7 +24,7 @@ class Map {
         void set_field(int x, int y, char symbol);
         int get_width() const;
         int get_height() const;
-        std::vector<std::string> get_map() const;
+        const std::vector<std::string>& get_map() const;
 };
 
 #endif // MAP_H

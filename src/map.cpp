@@ -71,7 +71,7 @@ int Map::get_height() const{
     return height;
 }
 
-std::vector<std::string> Map::get_map() const
+const std::vector<std::string>& Map::get_map() const
 {
     return map_vector;
 }
