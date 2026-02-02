@@ -28,7 +28,6 @@ class Entity {
 
         virtual void decide_move(int player_x, int player_y);
         void reset_move();
-        void initialize(bool is_found);
         void move(int newX, int newY);
 };
 

@@ -43,11 +43,6 @@ void Entity::reset_move()
     dy = 0;
 }
 
-void Entity::initialize(bool is_found)
-{
-    this -> is_found = is_found;
-}
-
 void Entity::move(int newX, int newY)
 {
     x = newX;

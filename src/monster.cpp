@@ -9,7 +9,7 @@ Monster::Monster(int x, int y)
     symbol = symbol::MONSTER;
     this -> x = x;
     this -> y = y;
-    initialize(true);
+    is_found = true;
 }
 
 void Monster::decide_move(int player_x, int player_y)

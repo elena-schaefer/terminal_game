@@ -8,7 +8,7 @@ Player::Player(int x, int y)
     symbol = symbol::PLAYER;
     this -> x = x;
     this -> y = y;
-    initialize(true); // still necessary with playing?
+    is_found = true;
 }
 
 void Player::set_input(int dx, int dy)
