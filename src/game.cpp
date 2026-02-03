@@ -6,11 +6,19 @@
 #include "spawnPoint.hpp"
 
 #include <conio.h>
+#include <memory>
 
 void Game::init()
 {
     // open file
-    map.load_from_file(); // without error handling
+    if (map.load_from_file())
+    {
+        init_entities();
+    }
+    else
+    {
+        playing = false;
+    }
 }
 
 Game::Game()
@@ -35,6 +43,11 @@ void Game::init_entities()
             entities.push_back(std::make_unique<Monster>(spawn.x, spawn.y));
             break;
         }
+    }
+
+    if (!player){
+        playing = false;
+        std::cerr << "No Player found." << std::endl;
     }
 }
 
@@ -92,13 +105,6 @@ void Game::update(Entity& entity) // Objekt wird genutzt statt kopie
 void Game::run()
 {
     init();
-    init_entities();
-
-
-    if (!player->is_initialized()){
-        playing = false;
-        std::cerr << "No Player found.";
-    }
 
     while (playing){
  
@@ -108,7 +114,7 @@ void Game::run()
 
         if (player->is_moving()){
 
-            for (std::unique_ptr<Entity>& entity : entities)
+            for (auto& entity : entities)
             {
                 entity->decide_move(*player, map);
                 update(*entity);

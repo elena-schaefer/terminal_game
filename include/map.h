@@ -15,7 +15,7 @@ class Map {
     
     public:
         Map();
-        void load_from_file();
+        bool load_from_file();
 
         std::vector<SpawnPoint> collect_spawn_points() const;
 

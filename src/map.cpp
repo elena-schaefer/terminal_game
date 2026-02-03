@@ -13,20 +13,27 @@ Map::Map(){
     height = 0;
 }
 
-void Map::load_from_file(){
+bool Map::load_from_file(){
 
     std::string line;
     std::ifstream Map("assets/map.txt");
 
-    while (getline (Map, line)) {
-        // save map
-        map_vector.push_back(line);
+    if(Map){
+        while (getline (Map, line)) {
+            // save map
+            map_vector.push_back(line);
+        }
+
+        Map.close();
+
+        width = map_vector[0].size();
+        height = map_vector.size();
+
+        return true;
     }
 
-    Map.close();
-
-    width = map_vector[0].size();
-    height = map_vector.size();
+    std::cerr << "Map can't be loaded." << std::endl;
+    return false;
 }
 
 std::vector<SpawnPoint> Map::collect_spawn_points() const

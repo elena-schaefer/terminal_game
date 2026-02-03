@@ -6,6 +6,8 @@
 #include "player.h"
 #include "mapRenderer.h"
 
+#include <memory>
+
 class Game {
 
     private:
