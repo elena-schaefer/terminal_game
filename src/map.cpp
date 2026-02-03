@@ -19,6 +19,7 @@ bool Map::load_from_file(){
     std::ifstream Map("assets/map.txt");
 
     if(Map){
+        map_vector.clear();
         while (getline (Map, line)) {
             // save map
             map_vector.push_back(line);
