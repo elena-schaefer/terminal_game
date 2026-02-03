@@ -5,6 +5,9 @@
 #include <vector>
 #include <string>
 
+class Player;
+class Map;
+
 class Entity {
 
     protected:
@@ -26,7 +29,7 @@ class Entity {
         int get_dx() const;
         int get_dy() const;
 
-        virtual void decide_move(int player_x, int player_y);
+        virtual void decide_move(const Player& player, const Map& map) = 0;
         void reset_move();
         void move(int newX, int newY);
 };

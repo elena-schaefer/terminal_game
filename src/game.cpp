@@ -110,8 +110,7 @@ void Game::run()
 
             for (std::unique_ptr<Entity>& entity : entities)
             {
-                entity->decide_move(player->get_x(),
-                                    player->get_y());
+                entity->decide_move(*player, map);
                 update(*entity);
             }
         }

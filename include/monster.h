@@ -5,7 +5,9 @@
 #include <vector>
 #include <string>
 #include "entity.h"
-#include "player.h"
+
+class Map;
+class Player;
 
 class Monster : public Entity{
 
@@ -15,7 +17,7 @@ class Monster : public Entity{
         Monster();
         Monster(int x, int y);
 
-        void decide_move(int player_x, int player_y);
+        void decide_move(const Player& player, const Map& map) override;
 };
 
 #endif // MONSTER_H
