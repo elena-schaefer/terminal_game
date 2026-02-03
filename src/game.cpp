@@ -41,7 +41,6 @@ void Game::init_entities()
         if (spawn.symbol == symbol::MONSTER) 
         {
             entities.push_back(std::make_unique<Monster>(spawn.x, spawn.y));
-            break;
         }
     }
 
