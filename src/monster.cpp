@@ -1,4 +1,8 @@
 #include <cmath>
+#include <array>
+#include <algorithm>
+#include <vector>
+
 #include "monster.h"
 #include "map.h"
 #include "player.h"
@@ -16,34 +20,46 @@ Monster::Monster(int x, int y)
 
 void Monster::decide_move(const Player& player, const Map& map)
 {
-    int distance_x = player.get_x() - x;
-    int distance_y = player.get_y() - y;
+    struct Option {
+        int dx;
+        int dy;
+        int score;
+    };
 
-    if (abs(distance_x) > abs(distance_y))
-    {
-        dy = 0;
-        dx = (distance_x > 0) ? 1 : -1;
-    }
-    else
-    {
-        dx = 0;
-        dy = (distance_y > 0) ? 1 : -1;
-    }
+    std::vector<Option> options;
 
-    // calculate new position
-    int newX = x + dx;
-    int newY = y + dy;
+    const int px = player.get_x();
+    const int py = player.get_y();
+
+    const std::array<std::pair<int, int>, 4> directions {{
+        { 1, 0}, { -1, 0}, { 0, 1}, { 0, -1}
+    }};
+
+    for (const auto& direction : directions)
+    {
+        if (map.is_accessable(x + direction.first, y + direction.second))
+        {
+            int new_x = x + direction.first;
+            int new_y = y + direction.second;
+
+            int score = std::abs(px - new_x) + std::abs(py - new_y);
     
-    if (!map.is_accessable(newX, newY)){
-        if (abs(distance_x) < abs(distance_y))
-        {
-            dy = 0;
-            dx = (distance_x > 0) ? 1 : -1;
-        }
-        else
-        {
-            dx = 0;
-            dy = (distance_y > 0) ? 1 : -1;
+            options.push_back({
+                                direction.first,
+                                direction.second,
+                                score
+                            });
         }
     }
+
+    auto best = std::min_element(
+        options.begin(),
+        options.end(),
+        [](const Option& a, const Option& b){
+            return a.score < b.score;
+        }
+    );
+
+    dx = best->dx;
+    dy = best->dy;
 }
