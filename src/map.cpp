@@ -3,6 +3,7 @@
 #include "player.h"
 #include "symbol.hpp"
 #include "spawnPoint.hpp"
+
 #include <iostream>
 #include <fstream>
 #include <vector>
