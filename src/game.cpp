@@ -92,6 +92,26 @@ void Game::update(Entity& entity) // Objekt wird genutzt statt kopie
     int newY = entity.get_y() + entity.get_dy();
 
     if (map.is_accessable(newX, newY)){
+        
+        char field = map.get_field(newX, newY);
+        
+        switch (field)
+        {
+            case symbol::MONSTER:
+                if (entity.get_symbol() == symbol::MONSTER)
+                {
+                    return;
+                }
+                else
+                {
+                    playing = false; //player died
+                }
+                break;
+            case symbol::PLAYER:
+                playing = false;
+                break;
+        }
+
         // Update map and entity coordinates
         map.set_field(entity.get_x(), entity.get_y(), symbol::FLOOR);
         map.set_field(newX, newY, entity.get_symbol());
