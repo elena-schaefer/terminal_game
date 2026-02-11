@@ -3,6 +3,13 @@ Little game to run in terminal.
 
 ---
 
+## Branches
+
+- Feature/add_monster:
+  Monster that chases Player in through the map. 
+
+---
+
 ## Build
 
 ```bash
@@ -16,7 +23,7 @@ cmake --build .
 
 ## Movement
 
-- WASD movement
+WASD movement
 
 - W - up
 - A - left
