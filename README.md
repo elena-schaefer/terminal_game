@@ -1,6 +1,8 @@
 # terminal_game
 Little game to run in terminal.
 
+---
+
 ## Build
 
 ```bash
@@ -10,12 +12,14 @@ cmake ..
 cmake --build .
 ```
 
+---
+
 ## Movement
 
-WASD movement
+- WASD movement
 
-W - up
-A - left
-S - down
-D - right
-Q - quit
+- W - up
+- A - left
+- S - down
+- D - right
+- Q - quit
