@@ -6,6 +6,7 @@ Player on a map that is chased by a monster.
 
 ## Project-Structure
 
+```bash
 .
 ├── assets/
 │ ├── map.txt
@@ -25,6 +26,7 @@ Player on a map that is chased by a monster.
 │ └── main.cpp
 ├── CMakeLists.txt
 └── README.md
+```
 
 ---
 
