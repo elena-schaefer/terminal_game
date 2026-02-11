@@ -35,6 +35,9 @@ Player on a map that is chased by a monster. <br>
 - Feature/add_monster: <br>
   Implements a monster that chases player through a map. 
 
+- Feature/add_item: <br>
+  Implements items that can be collected by player. 
+
 ---
 
 ## Build
