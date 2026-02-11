@@ -24,7 +24,9 @@ class Game {
         Game();
         void init_entities();
         void handle_input();
-        void update(Entity& entity);
+        void collission_check(Entity& entity);
+        void update(Entity& entity, int newX, int newY);
+        void game_over(Entity& entity, int newX, int newY);
         void run();
 };
 

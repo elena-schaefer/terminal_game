@@ -85,7 +85,7 @@ void Game::handle_input()
     }; 
 }
 
-void Game::update(Entity& entity) // Objekt wird genutzt statt kopie
+void Game::collission_check(Entity& entity) // Objekt wird genutzt statt kopie
 {
     // calculate new position
     int newX = entity.get_x() + entity.get_dx();
@@ -104,21 +104,35 @@ void Game::update(Entity& entity) // Objekt wird genutzt statt kopie
                 }
                 else
                 {
-                    playing = false; //player died
+                    game_over(entity, newX, newY);
+                    return;
                 }
                 break;
             case symbol::PLAYER:
-                playing = false;
+                game_over(entity, newX, newY);
+                return;
                 break;
         }
 
         // Update map and entity coordinates
-        map.set_field(entity.get_x(), entity.get_y(), symbol::FLOOR);
-        map.set_field(newX, newY, entity.get_symbol());
-
-        entity.move(newX, newY);
-        entity.reset_move();
+        update(entity, newX, newY);
     }
+}
+
+void Game::update(Entity& entity, int newX, int newY){
+    // Update map and entity coordinates
+    map.set_field(entity.get_x(), entity.get_y(), symbol::FLOOR);
+    map.set_field(newX, newY, entity.get_symbol());
+
+    entity.move(newX, newY);
+    entity.reset_move();
+}
+
+void Game::game_over(Entity& entity, int newX, int newY){
+    map.set_field(entity.get_x(), entity.get_y(), symbol::FLOOR);
+    map.set_field(newX, newY, 'X');
+    map_renderer.draw(map);
+    playing = false;
 }
 
 void Game::run()
@@ -136,7 +150,10 @@ void Game::run()
             for (auto& entity : entities)
             {
                 entity->decide_move(*player, map);
-                update(*entity);
+                collission_check(*entity);
+                if (!playing){
+                    return;
+                }
             }
         }
     }
