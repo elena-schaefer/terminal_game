@@ -1,6 +1,6 @@
 # terminal_game
-2D-game to run in terminal. \n
-Player on a map that is chased by a monster. \n
+2D-game to run in terminal. <br>
+Player on a map that is chased by a monster. <br>
 
 ---
 
