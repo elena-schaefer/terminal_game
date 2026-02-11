@@ -32,8 +32,8 @@ Player on a map that is chased by a monster. <br>
 
 ## Branches
 
-- Feature/add_monster:
-  Implements a monster that chases player in through the map. 
+- Feature/add_monster: <br>
+  Implements a monster that chases player through a map. 
 
 ---
 
