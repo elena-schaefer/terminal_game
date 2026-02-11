@@ -1,5 +1,5 @@
 # terminal_game
-Little game to run in terminal.
+2D-game to run in terminal with a player that moves on a map.
 
 ---
 
