@@ -14,6 +14,7 @@ void Game::init()
     if (map.load_from_file())
     {
         init_entities();
+        item_amount = map.collect_items();
     }
     else
     {
@@ -28,7 +29,7 @@ Game::Game()
 
 void Game::init_entities()
 {
-    std::vector<SpawnPoint> spawn_point_vector = map.collect_spawn_points(item_amount);
+    std::vector<SpawnPoint> spawn_point_vector = map.collect_spawn_points();
 
     for (const SpawnPoint& spawn : spawn_point_vector)
     {

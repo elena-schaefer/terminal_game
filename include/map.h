@@ -17,7 +17,8 @@ class Map {
         Map();
         bool load_from_file();
 
-        std::vector<SpawnPoint> collect_spawn_points(int& item_amount) const;
+        std::vector<SpawnPoint> collect_spawn_points() const;
+        int collect_items() const;
 
         bool is_accessable(int x, int y) const;
         char get_field(int x, int y) const;

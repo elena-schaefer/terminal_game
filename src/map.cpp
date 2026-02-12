@@ -38,7 +38,7 @@ bool Map::load_from_file(){
     return false;
 }
 
-std::vector<SpawnPoint> Map::collect_spawn_points(int& item_amount) const
+std::vector<SpawnPoint> Map::collect_spawn_points() const
 {
     std::vector<SpawnPoint> spawn_points;
     for (int y = 0; y < height; y++){
@@ -48,13 +48,23 @@ std::vector<SpawnPoint> Map::collect_spawn_points(int& item_amount) const
             { 
                 spawn_points.push_back({symbol, x, y});
             }
-            if (symbol == symbol::ITEM)
+        }
+    }
+    return spawn_points;
+}
+
+int Map::collect_items() const
+{
+    int item_amount = 0;
+    for (int y = 0; y < height; y++){
+        for (int x = 0; x < width; x++){
+            if (get_field(x, y) == symbol::ITEM)
             {
                 item_amount ++;
             }
         }
     }
-    return spawn_points;
+    return item_amount;
 }
 
 bool Map::is_accessable(int x, int y) const{
