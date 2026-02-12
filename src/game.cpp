@@ -89,6 +89,9 @@ void Game::collission_check(Monster& monster)
     int newX = monster.get_x() + monster.get_dx();
     int newY = monster.get_y() + monster.get_dy();
 
+    bool on_item = monster.get_on_item();
+    monster.set_on_item(false);
+
     if (!map.is_accessable(newX, newY))
     {
         return;
@@ -107,8 +110,7 @@ void Game::collission_check(Monster& monster)
             game_over(monster, newX, newY);
             return;
     }
-    update(monster, newX, newY, monster.get_on_item());
-    monster.set_on_item(false);
+    update(monster, newX, newY, on_item);
 }
 
 void Game::collission_check(Player& player)
