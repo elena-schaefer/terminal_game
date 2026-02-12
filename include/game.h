@@ -26,7 +26,7 @@ class Game {
         void handle_input();
         void collission_check(Monster& monster);
         void collission_check(Player& player);
-        void update(Entity& entity, int newX, int newY);
+        void update(Entity& entity, int newX, int newY, bool monster_on_item = false);
         void game_over(Entity& entity, int newX, int newY);
         void run();
 };

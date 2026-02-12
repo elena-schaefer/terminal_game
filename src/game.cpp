@@ -98,13 +98,17 @@ void Game::collission_check(Monster& monster)
         
     switch (field)
     {
+        case symbol::ITEM:
+            monster.set_on_item(true);
+            break;
         case symbol::MONSTER:
             return;
         case symbol::PLAYER:
             game_over(monster, newX, newY);
             return;
     }
-    update(monster, newX, newY);
+    update(monster, newX, newY, monster.get_on_item());
+    monster.set_on_item(false);
 }
 
 void Game::collission_check(Player& player)
@@ -126,9 +130,10 @@ void Game::collission_check(Player& player)
     update(player, newX, newY);
 }
 
-void Game::update(Entity& entity, int newX, int newY){
+void Game::update(Entity& entity, int newX, int newY, bool monster_on_item){
     // Update map and entity coordinates
-    map.set_field(entity.get_x(), entity.get_y(), symbol::FLOOR);
+    char symbol = (monster_on_item == true) ? symbol::ITEM : symbol::FLOOR;
+    map.set_field(entity.get_x(), entity.get_y(), symbol);
     map.set_field(newX, newY, entity.get_symbol());
 
     entity.move(newX, newY);
