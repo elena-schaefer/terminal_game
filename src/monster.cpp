@@ -63,3 +63,12 @@ void Monster::decide_move(const Player& player, const Map& map)
     dx = best->dx;
     dy = best->dy;
 }
+
+bool Monster::get_on_item() const
+{
+    return on_item;
+}
+
+void Monster::set_on_item(bool on_item){
+    this->on_item = on_item;
+}

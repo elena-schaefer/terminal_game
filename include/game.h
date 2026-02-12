@@ -17,14 +17,15 @@ class Game {
 
     public:
         Map map;
-        Player* player = nullptr;
-        std::vector<std::unique_ptr<Entity>> entities;
+        std::vector<std::unique_ptr<Monster>> monsters;
+        std::unique_ptr<Player> player;
         MapRenderer map_renderer;
 
         Game();
         void init_entities();
         void handle_input();
-        void collission_check(Entity& entity);
+        void collission_check(Monster& monster);
+        void collission_check(Player& player);
         void update(Entity& entity, int newX, int newY);
         void game_over(Entity& entity, int newX, int newY);
         void run();

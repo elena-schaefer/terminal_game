@@ -8,6 +8,8 @@ namespace symbol {
     static constexpr char MONSTER = 'M';
     static constexpr char WALL = '#';
     static constexpr char FLOOR = '.';
+    static constexpr char ITEM = 'o';
+
 }
 
 #endif // SYMBOL_HPP

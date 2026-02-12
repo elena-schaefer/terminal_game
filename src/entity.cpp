@@ -1,6 +1,4 @@
 #include "entity.h"
-#include "map.h"
-#include "player.h"
 
 Entity::Entity() = default;
 
@@ -32,11 +30,6 @@ int Entity::get_dx() const
 int Entity::get_dy() const
 {
     return dy;
-}
-
-void Entity::decide_move(const Player& player, const Map& map)
-{
-
 }
 
 void Entity::reset_move()

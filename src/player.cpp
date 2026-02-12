@@ -28,8 +28,4 @@ bool Player::is_moving()
     return moving;
 }
 
-void Player::decide_move(const Player& player, const Map& map)
-{
-    
-}
 

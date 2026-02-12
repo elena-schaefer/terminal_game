@@ -18,8 +18,6 @@ class Player : public Entity {
         void set_input(int dx, int dy);
         void set_moving(bool moving);
         bool is_moving();
-
-        void decide_move(const Player& player, const Map& map) override;
 };
 
 #endif // PLAYER_H

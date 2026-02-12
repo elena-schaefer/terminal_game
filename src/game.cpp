@@ -34,13 +34,11 @@ void Game::init_entities()
     {
         if (spawn.symbol == symbol::PLAYER) 
         {
-            std::unique_ptr<Player> p = std::make_unique<Player>(spawn.x, spawn.y);
-            player = p.get();
-            entities.push_back(std::move(p));
+            player = std::make_unique<Player>(spawn.x, spawn.y);
         }
         if (spawn.symbol == symbol::MONSTER) 
         {
-            entities.push_back(std::make_unique<Monster>(spawn.x, spawn.y));
+            monsters.push_back(std::make_unique<Monster>(spawn.x, spawn.y)); 
         }
     }
 
@@ -85,38 +83,47 @@ void Game::handle_input()
     }; 
 }
 
-void Game::collission_check(Entity& entity) // Objekt wird genutzt statt kopie
+void Game::collission_check(Monster& monster)
 {
     // calculate new position
-    int newX = entity.get_x() + entity.get_dx();
-    int newY = entity.get_y() + entity.get_dy();
+    int newX = monster.get_x() + monster.get_dx();
+    int newY = monster.get_y() + monster.get_dy();
 
-    if (map.is_accessable(newX, newY)){
-        
-        char field = map.get_field(newX, newY);
-        
-        switch (field)
-        {
-            case symbol::MONSTER:
-                if (entity.get_symbol() == symbol::MONSTER)
-                {
-                    return;
-                }
-                else
-                {
-                    game_over(entity, newX, newY);
-                    return;
-                }
-                break;
-            case symbol::PLAYER:
-                game_over(entity, newX, newY);
-                return;
-                break;
-        }
-
-        // Update map and entity coordinates
-        update(entity, newX, newY);
+    if (!map.is_accessable(newX, newY))
+    {
+        return;
     }
+
+    char field = map.get_field(newX, newY);
+        
+    switch (field)
+    {
+        case symbol::MONSTER:
+            return;
+        case symbol::PLAYER:
+            game_over(monster, newX, newY);
+            return;
+    }
+    update(monster, newX, newY);
+}
+
+void Game::collission_check(Player& player)
+{
+    // calculate new position
+    int newX = player.get_x() + player.get_dx();
+    int newY = player.get_y() + player.get_dy();
+
+    if (!map.is_accessable(newX, newY))
+    {
+        return;
+    }
+
+    if (map.get_field(newX, newY) == symbol::MONSTER)
+    {
+        game_over(player, newX, newY);
+        return;
+    }
+    update(player, newX, newY);
 }
 
 void Game::update(Entity& entity, int newX, int newY){
@@ -147,10 +154,12 @@ void Game::run()
 
         if (player->is_moving()){
 
-            for (auto& entity : entities)
+            collission_check(*player);
+
+            for (auto& monsti : monsters)
             {
-                entity->decide_move(*player, map);
-                collission_check(*entity);
+                monsti->decide_move(*player, map);
+                collission_check(*monsti);
                 if (!playing){
                     return;
                 }
