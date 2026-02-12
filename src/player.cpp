@@ -28,4 +28,8 @@ bool Player::is_moving()
     return moving;
 }
 
+void Player::collect_item(int& item_amount)
+{
+    item_amount --;
+}
 

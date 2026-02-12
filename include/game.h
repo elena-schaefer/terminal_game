@@ -21,6 +21,9 @@ class Game {
         std::unique_ptr<Player> player;
         MapRenderer map_renderer;
 
+        int item_amount = 0;
+
+
         Game();
         void init_entities();
         void handle_input();

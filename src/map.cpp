@@ -38,14 +38,19 @@ bool Map::load_from_file(){
     return false;
 }
 
-std::vector<SpawnPoint> Map::collect_spawn_points() const
+std::vector<SpawnPoint> Map::collect_spawn_points(int& item_amount) const
 {
     std::vector<SpawnPoint> spawn_points;
     for (int y = 0; y < height; y++){
         for (int x = 0; x < width; x++){
             char symbol = get_field(x, y);
-            if (symbol == symbol::PLAYER || symbol == symbol::MONSTER){ 
+            if (symbol == symbol::PLAYER || symbol == symbol::MONSTER)
+            { 
                 spawn_points.push_back({symbol, x, y});
+            }
+            if (symbol == symbol::ITEM)
+            {
+                item_amount ++;
             }
         }
     }

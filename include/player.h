@@ -18,6 +18,8 @@ class Player : public Entity {
         void set_input(int dx, int dy);
         void set_moving(bool moving);
         bool is_moving();
+
+        void collect_item(int& item_amount);
 };
 
 #endif // PLAYER_H

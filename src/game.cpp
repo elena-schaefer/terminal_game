@@ -28,7 +28,7 @@ Game::Game()
 
 void Game::init_entities()
 {
-    std::vector<SpawnPoint> spawn_point_vector = map.collect_spawn_points();
+    std::vector<SpawnPoint> spawn_point_vector = map.collect_spawn_points(item_amount);
 
     for (const SpawnPoint& spawn : spawn_point_vector)
     {
@@ -124,11 +124,17 @@ void Game::collission_check(Player& player)
         return;
     }
 
-    if (map.get_field(newX, newY) == symbol::MONSTER)
+    char field = map.get_field(newX, newY);
+    if (field == symbol::MONSTER)
     {
         game_over(player, newX, newY);
         return;
     }
+    else if (field == symbol::ITEM)
+    {
+        player.collect_item(item_amount);
+    }
+    
     update(player, newX, newY);
 }
 
@@ -162,7 +168,11 @@ void Game::run()
         if (player->is_moving()){
 
             collission_check(*player);
-
+            if (item_amount == 0)
+            {
+                map_renderer.draw(map);
+                return;
+            }
             for (auto& monsti : monsters)
             {
                 monsti->decide_move(*player, map);
