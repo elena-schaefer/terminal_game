@@ -1,6 +1,6 @@
 # terminal_game
 2D-game to run in terminal. <br>
-Player on a map that is chased by a monster. <br>
+Player on a map that has to collect all items to win the game and is chased by monster. <br>
 
 ---
 
@@ -36,7 +36,7 @@ Player on a map that is chased by a monster. <br>
   Implements a monster that chases player through a map. 
 
 - Feature/add_item: <br>
-  Implements items that can be collected by player. 
+  Implements items that has to be collected by player. 
 
 ---
 
@@ -60,3 +60,13 @@ WASD movement
 - S - down
 - D - right
 - Q - quit
+
+---
+
+## Explainer 
+
+'#' - wall <br>
+'@' - player <br>
+'M' - monster <br>
+'o' - item <br>
+'.' - floor <br>
