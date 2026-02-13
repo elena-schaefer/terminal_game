@@ -6,7 +6,7 @@
 class MapRenderer{
     public:
         MapRenderer();
-        void draw(Map map) const;
+        void draw(const Map& map) const;
 };
 
 #endif

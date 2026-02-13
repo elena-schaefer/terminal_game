@@ -15,7 +15,6 @@ Monster::Monster(int x, int y)
     symbol = symbol::MONSTER;
     this -> x = x;
     this -> y = y;
-    is_found = true;
 }
 
 void Monster::decide_move(const Player& player, const Map& map)
@@ -37,7 +36,7 @@ void Monster::decide_move(const Player& player, const Map& map)
 
     for (const auto& direction : directions)
     {
-        if (map.is_accessable(x + direction.first, y + direction.second))
+        if (map.is_accessible(x + direction.first, y + direction.second))
         {
             int new_x = x + direction.first;
             int new_y = y + direction.second;
@@ -50,6 +49,11 @@ void Monster::decide_move(const Player& player, const Map& map)
                                 score
                             });
         }
+    }
+
+    if (options.empty()){
+        dx, dy = 0;
+        return;
     }
 
     auto best = std::min_element(

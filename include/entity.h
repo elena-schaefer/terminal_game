@@ -13,12 +13,9 @@ class Entity {
         int y = 0;
         int dx = 0;
         int dy = 0;
-        bool is_found = false;
 
     public:
         Entity();
-
-        bool is_initialized() const;
 
         char get_symbol() const;
         int get_x() const;

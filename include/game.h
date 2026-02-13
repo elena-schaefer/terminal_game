@@ -23,12 +23,11 @@ class Game {
 
         int item_amount = 0;
 
-
         Game();
         void init_entities();
         void handle_input();
-        void collission_check(Monster& monster);
-        void collission_check(Player& player);
+        void collision_check(Monster& monster);
+        void collision_check(Player& player);
         void update(Entity& entity, int newX, int newY, bool monster_on_item = false);
         void game_over(Entity& entity, int newX, int newY);
         void run();

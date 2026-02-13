@@ -4,7 +4,7 @@ MapRenderer::MapRenderer()
 {
 }
 
-void MapRenderer::draw(Map map) const
+void MapRenderer::draw(const Map& map) const
 {
     // clear console
     std::cout << "\033[2J\033[H";

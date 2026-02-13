@@ -8,7 +8,6 @@ Player::Player(int x, int y)
     symbol = symbol::PLAYER;
     this -> x = x;
     this -> y = y;
-    is_found = true;
 }
 
 void Player::set_input(int dx, int dy)
@@ -23,7 +22,7 @@ void Player::set_moving(bool moving)
 }
 
 
-bool Player::is_moving()
+bool Player::is_moving() const
 {
     return moving;
 }

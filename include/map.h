@@ -20,7 +20,7 @@ class Map {
         std::vector<SpawnPoint> collect_spawn_points() const;
         int collect_items() const;
 
-        bool is_accessable(int x, int y) const;
+        bool is_accessible(int x, int y) const;
         char get_field(int x, int y) const;
         void set_field(int x, int y, char symbol);
         int get_width() const;

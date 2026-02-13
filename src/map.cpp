@@ -28,6 +28,11 @@ bool Map::load_from_file(){
 
         Map.close();
 
+        if (map_vector.empty())
+        {
+            return false;
+        }
+
         width = map_vector[0].size();
         height = map_vector.size();
 
@@ -67,7 +72,7 @@ int Map::collect_items() const
     return item_amount;
 }
 
-bool Map::is_accessable(int x, int y) const{
+bool Map::is_accessible(int x, int y) const{
     // check for borders & collisions
     if (0 > x || x >= width || 
         0 > y || y >= height){

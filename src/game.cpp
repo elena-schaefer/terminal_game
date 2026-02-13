@@ -84,7 +84,7 @@ void Game::handle_input()
     }; 
 }
 
-void Game::collission_check(Monster& monster)
+void Game::collision_check(Monster& monster)
 {
     // calculate new position
     int newX = monster.get_x() + monster.get_dx();
@@ -93,7 +93,7 @@ void Game::collission_check(Monster& monster)
     bool on_item = monster.get_on_item();
     monster.set_on_item(false);
 
-    if (!map.is_accessable(newX, newY))
+    if (!map.is_accessible(newX, newY))
     {
         return;
     }
@@ -114,13 +114,13 @@ void Game::collission_check(Monster& monster)
     update(monster, newX, newY, on_item);
 }
 
-void Game::collission_check(Player& player)
+void Game::collision_check(Player& player)
 {
     // calculate new position
     int newX = player.get_x() + player.get_dx();
     int newY = player.get_y() + player.get_dy();
 
-    if (!map.is_accessable(newX, newY))
+    if (!map.is_accessible(newX, newY))
     {
         return;
     }
@@ -151,7 +151,7 @@ void Game::update(Entity& entity, int newX, int newY, bool monster_on_item){
 
 void Game::game_over(Entity& entity, int newX, int newY){
     map.set_field(entity.get_x(), entity.get_y(), symbol::FLOOR);
-    map.set_field(newX, newY, 'X');
+    map.set_field(newX, newY, symbol::DEAD);
     map_renderer.draw(map);
     playing = false;
 }
@@ -168,7 +168,7 @@ void Game::run()
 
         if (player->is_moving()){
 
-            collission_check(*player);
+            collision_check(*player);
             if (item_amount == 0)
             {
                 map_renderer.draw(map);
@@ -177,7 +177,7 @@ void Game::run()
             for (auto& monsti : monsters)
             {
                 monsti->decide_move(*player, map);
-                collission_check(*monsti);
+                collision_check(*monsti);
                 if (!playing){
                     return;
                 }

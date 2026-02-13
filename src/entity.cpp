@@ -2,11 +2,6 @@
 
 Entity::Entity() = default;
 
-bool Entity::is_initialized() const
-{
-    return is_found;
-}
-
 char Entity::get_symbol() const
 {
     return symbol;
